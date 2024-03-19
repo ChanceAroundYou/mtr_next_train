@@ -1,6 +1,7 @@
 {
   "name": "mtr_next_train",
   "version": "0.1.0",
+  "homepage": "/mtr/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

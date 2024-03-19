@@ -24,10 +24,14 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="MTR Next Train" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +43,49 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+    // serviceWorker
+    // 检查serviceWorker属性是否可用
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("%PUBLIC_URL%/serviceWorker.js")
+          .then(res => console.log("service worker registered"))
+          .catch(err => console.log("service worker not registered", err));
+       })
+      }
+    </script>
+
+<script>
+  	var deferredPrompt = null;
+  
+		// 判断用户是否安装此应用：beforeinstallprompt,如果用户已经安装过了,那么该事件不会再次触发
+  	// 需要卸载，然后重新打开浏览器才能再次触发
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // setTimeout(function() {
+      //           deferredPrompt.prompt()
+      //           // event.userChoice //判断用户是否安装
+      //           //     .then(function(e) {
+      //           //         install = true
+      //           //     })    
+      //       }, 2000)
+    }, { once: true });
+    
+  	// 安装完成后触发,即点击安装弹窗中的“安装”后被触发
+    window.addEventListener("appinstalled", () => {
+      deferredPrompt = null;
+    });
+  
+  
+    function addToDesktop() {
+      // 调用prompt()方法触发安装弹窗
+      deferredPrompt.prompt();
+      deferredPrompt = null;
+    }
+</script>
+
+<!-- <button onclick="addToDesktop()">点击安装</button> -->
   </body>
 </html>
