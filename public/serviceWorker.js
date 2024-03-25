@@ -1,7 +1,7 @@
 // cache名, 在控制台Application的CaChe下可以看到
 const cacheName = "MTRNextTrain";
 // cache文件
-const cacheFiles = ["/", "/index.html", "/manifest.json"];
+const cacheFiles = ["./", "./index.html", "./manifest.json"];
 
 /**
  * 安装 Service Worker
