@@ -6,21 +6,21 @@ import Info from './Info';
 
 const NextTrain = () => {
   document.title = 'MTR Next Train';
-  const initialTags = [
+  const [tags, setTags] = useState([
     'EAL-UNI',
-  ];
-  const [tags, setTags] = useState(initialTags);
+  ]);
   const [activeTag, setActiveTag] = useState('');
 
   useEffect(() => {
+    const tags = ['EAL-UNI']
     const storedTags = localStorage.getItem('tags');
     if (storedTags && storedTags !== '[]') {
       const parsedTags = JSON.parse(storedTags);
       setTags(parsedTags);
       setActiveTag(parsedTags[0]);
     } else {
-      setTags(initialTags);
-      setActiveTag(initialTags[0]);
+      setTags(tags);
+      setActiveTag(tags[0]);
     }
   }, []);
 
