@@ -12,10 +12,13 @@ export default function App() {
       script.src = 'https://finicounter.eu.org/finicounter.js';
       script.async = true
       // script.crossOrigin = '';
+      script.setAttribute('referrerpolicy', 'origin');
+      document.head.setAttribute('data-referrer', 'https://aws.xiaokubao.space/');
       document.body.appendChild(script);
       
       return () => {
         document.body.removeChild(script);
+        document.head.removeAttribute('data-referrer');
       };
     };
 
